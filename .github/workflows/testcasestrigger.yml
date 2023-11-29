@@ -1,0 +1,76 @@
+name: 'Trigger Testcases'
+
+on:
+  schedule:
+    # Runs "every 12 hour"
+    - cron: '0 */12 * * *'
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'env'
+        required: true
+        default: 'qa'
+        type: choice
+        options:
+          - dev
+      region:
+        description: 'environment'
+        required: true
+        default: 'eus2'
+        type: choice
+        options:
+          - eus2
+      module:
+        description: 'module name'
+        required: true
+        default: 'firstGradleProject'
+        type: choice
+        options:
+          - firstGradleProject
+      testGroup:
+        description: 'test group to run'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+
+env:
+  ENVIRONMENT: ${{ github.event.inputs.environment }}
+  REGION: ${{ github.event.inputs.region }}
+  INSTANCE: ${{ github.event.inputs.instance }}
+  TEST_GROUP: ${{ github.event.inputs.testGroup }}
+  MODULE: ${{ github.event.inputs.module }}
+  TAG: ${{ github.event.inputs.tag }}
+
+jobs:
+  run_tests_on_manual_trigger:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: 
+      name: blk-${{ github.event.inputs.Environment }}-${{ github.event.inputs.Region }}-${{ github.event.inputs.Instance }}
+    steps:
+      - name: 'BUILD - Checkout code'
+        uses: 'actions/checkout@v2'
+      - name: 'BUILD - Set up Java'
+        uses: 'actions/setup-java@v3'
+        with:
+          java-version: '17'
+          distribution: 'oracle'
+      - name: 'Cache the build'
+        uses: 'actions/cache@v2'
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-v3-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-v3-
+
+      - name: 'Executing Tests in ${{ github.event.inputs.environment }} environment'
+        id: tests  
+        run: |
+          chmod +x ./scripts/runTestcases.sh
+          ./scripts/runTestcases.sh
+        shell: bash
