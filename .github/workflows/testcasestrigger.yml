@@ -24,7 +24,7 @@ on:
       module:
         description: 'module name'
         required: true
-        default: 'firstGradleProject'
+        default: 'GuruBank'
         type: choice
         options:
           - firstGradleProject
