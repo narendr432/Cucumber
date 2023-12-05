@@ -9,6 +9,7 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
 
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.8.1'
@@ -30,4 +31,5 @@ dependencies {
 
 test {
     useJUnitPlatform()
+     systemProperty "cucumber.options", System.getProperty("cucumber.options")
 }
