@@ -31,10 +31,10 @@ on:
       testGroup:
         description: 'test group to run'
         required: true
-        default: 'smoke'
+        default: '@smoke'
         type: choice
         options:
-          - smoke
+          - @smoke
 
 env:
   ENVIRONMENT: ${{ github.event.inputs.environment }}
