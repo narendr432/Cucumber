@@ -24,10 +24,10 @@ on:
       module:
         description: 'module name'
         required: true
-        default: 'GuruBank'
+        default: 'Cucumber'
         type: choice
         options:
-          - firstGradleProject
+          - Cucumber
       testGroup:
         description: 'test group to run'
         required: true
