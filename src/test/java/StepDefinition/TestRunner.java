@@ -13,7 +13,8 @@ import org.junit.runner.RunWith;
                 "json:build/report/json/cucumber-report.json"
         },
         glue = {"StepDefinition"},
-        features = {"src//test//resources//Features"}
+        features = {"src//test//resources//Features"},
+        tags = "@smoke"
 )
 public class TestRunner {
 }
