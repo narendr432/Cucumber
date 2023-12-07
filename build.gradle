@@ -9,7 +9,6 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
 
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.8.1'
@@ -18,19 +17,19 @@ dependencies {
 
     implementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.14.0'
     implementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.14.0'
-    //testImplementation group: 'info.cukes', name: 'cucumber-junit', version: '1.2.5'
+    testImplementation group: 'info.cukes', name: 'cucumber-junit', version: '1.2.5'
+
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 
 
 
 
-
-    testImplementation 'junit:junit:4.13.1'
+    //testImplementation 'junit:junit:4.13.1'
 
 
 }
 
 test {
-    useJUnitPlatform() {
-     systemProperty "cucumber.options", System.getProperty("cucumber.options")
-    }
+    useJUnit()
 }
