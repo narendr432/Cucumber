@@ -31,5 +31,7 @@ dependencies {
 }
 
 test {
-    useJUnit()
+    useJUnit(){
+        systemProperty "cucumber.options", System.getProperty("cucumber.options")
+    }
 }
