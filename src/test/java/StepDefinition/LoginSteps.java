@@ -15,9 +15,11 @@ public class LoginSteps {
 
     @Given("user is on login page")
     public void user_is_on_login_page() {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\user\\IdeaProjects\\Guru99Bank\\Drivers\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        System.setProperty("webdriver.chrome.driver", Paths.get("").toAbsolutePath().toString()+"\\Drivers\\chromedriver.exe");
+       ChromeOptions options = new ChromeOptions();
+options.addArguments("--no-sandbox");
+options.addArguments("--disable-dev-shm-usage");
+options.addArguments("--headless");
         options.setHeadless(true);
         driver= new ChromeDriver(options);
         driver.manage().window().maximize();
