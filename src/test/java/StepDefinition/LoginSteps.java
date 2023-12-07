@@ -44,6 +44,7 @@ public class LoginSteps {
         System.setProperty("webdriver.chrome.driver","C:\\Users\\user\\IdeaProjects\\Guru99Bank\\Drivers\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+      options.setHeadless(false);
         driver= new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get("https://demo.guru99.com/V1/index.php");
