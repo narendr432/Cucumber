@@ -18,6 +18,7 @@ public class LoginSteps {
     public void user_is_on_login_page() {
         System.setProperty("webdriver.chrome.driver", Paths.get("").toAbsolutePath().toString()+"\\Drivers\\chromedriver.exe");
        ChromeOptions options = new ChromeOptions();
+       options.setBinary(Paths.get("").toAbsolutePath().toString()+"/Drivers/chromedriver.exe");
 options.addArguments("--no-sandbox");
 options.addArguments("--disable-dev-shm-usage");
 options.addArguments("--headless");
